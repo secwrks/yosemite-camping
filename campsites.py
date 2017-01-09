@@ -4,7 +4,7 @@ import copy
 import requests
 
 import urllib
-from urlparse import parse_qs
+from urllib.parse import parse_qs
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 
@@ -55,7 +55,7 @@ PAYLOAD = {
 }
 
 
-BASE_URL = "http://www.recreation.gov"
+BASE_URL = "https://www.recreation.gov"
 UNIF_SEARCH = "/unifSearch.do"
 UNIF_RESULTS = "/unifSearchResults.do"
 
@@ -125,9 +125,9 @@ if __name__ == "__main__":
     sites = findCampSites(arg_dict)
     if sites:
         for site in sites:
-            print site + \
+            print(site + \
                 "&arrivalDate={}&departureDate={}" \
                 .format(
-                        urllib.quote_plus(formatDate(arg_dict['start_date'])),
-                        urllib.quote_plus(formatDate(arg_dict['end_date'])))
+                        urllib.parse.quote_plus(formatDate(arg_dict['start_date'])),
+                        urllib.parse.quote_plus(formatDate(arg_dict['end_date']))))
 
